@@ -15,7 +15,25 @@ def initGame():
     clock = pygame.time.Clock()
 
 def runGame():
-    global gamepad, clock, background, fighter, missile, explosion, missileSound
+    global gamepad, clock
+
+    onGame = False
+    while not onGame:
+        for event in pygame.event.get():
+            if event.type in [pygame.QUIT]:     # 게임 프로그램 종료
+                pygame.quit()
+                sys.exit()
+        
+        gamePad.fill(BLACK)     # 게임 화면 (검은색)
+
+        pygame.display.update() # 게임 화면을 다시 그림
+
+        clock.tick(60)          # 게임 화면의 초당 프레임 수를 60으로 설정
+    
+    pygame.quit()  # pygame 종료
+
+initGame()
+runGame()
 
 def drawObject(obj, x, y):
     global gamePad
