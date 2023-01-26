@@ -7,15 +7,20 @@ BLACK = (0, 0, 0)
 padWidth = 480     # 게임 화면의 가로 크기
 padHeight = 640    # 게임 화면의 세로 크기
 
+def drawObject(obj, x, y):
+    global gamePad
+    gamePad.blit(obj, (x, y))
+
 def initGame():
-    global gamePad, clock
+    global gamePad, clock, background
     pygame.init()
     gamePad = pygame.display.set_mode((padWidth, padHeight))
-    pygame.display.set_caption('PyShooting')   # 게임 이름
+    pygame.display.set_caption('PyShooting')          # 게임 이름
+    background = pygame.image.load('background.png')  # 배경 그림
     clock = pygame.time.Clock()
 
 def runGame():
-    global gamepad, clock
+    global gamepad, clock, background
 
     onGame = False
     while not onGame:
@@ -23,6 +28,8 @@ def runGame():
             if event.type in [pygame.QUIT]:     # 게임 프로그램 종료
                 pygame.quit()
                 sys.exit()
+        
+        drawObject(background, 0, 0)    # 메인 화면 그리기
         
         gamePad.fill(BLACK)     # 게임 화면 (검은색)
 
@@ -35,8 +42,7 @@ def runGame():
 initGame()
 runGame()
 
-def drawObject(obj, x, y):
-    global gamePad
+
 
 # 운석을 맞춘 개수 계산
 def writeScore(count):
