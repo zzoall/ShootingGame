@@ -29,7 +29,7 @@ def writePassed(count):
 
 # 게임 메시지 출력
 def writeMessage(text):
-    global gamePad, gameoverSound
+    global gamePad, gameOverSound
     textfont = pygame.font('NanumGothic.ttf', 80)
     text = textfont.render(text, True, (255, 0, 0))
     textpos = text.get_rect()
@@ -37,7 +37,7 @@ def writeMessage(text):
     gamePad.blit(text, textpos)
     pygame.display.update()
     pygame.mixer.music.stop()   # 배경 음악 정지
-    gameoverSound.play()        # 게임 오버 사운드 재생
+    gameOverSound.play()        # 게임 오버 사운드 재생
     sleep(2)
     pygame.mixer.music.play(-1) # 배경 음악 재생
     runGame()
@@ -72,7 +72,7 @@ def initGame():
     clock = pygame.time.Clock()
 
 def runGame():
-    global gamepad, clock, background, fighter, missile, explosion, missileSound, gameOverSound
+    global gamePad, clock, background, fighter, missile, explosion, missileSound, gameOverSound
 
     # 전투기 크기
     fighterSize = fighter.get_rect().size
